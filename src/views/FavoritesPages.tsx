@@ -1,6 +1,9 @@
+import Header from "../components/Header";
 
 export default function FavoritesPages() {
     return (
-        <div>FavoritesPages</div>
+        <>
+            < Header />
+        </>
     )
 }
