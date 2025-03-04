@@ -8,7 +8,7 @@ export default function Header() {
     const isHome = useMemo(() => pathname === '/', [pathname])
 
     return (
-        <header className="bg-slate-800">
+        <header className={isHome ? 'bg-[url(/bg.jpg)] bg-center  bg-cover' : 'bg-slate-800'}>
             <div className="mx-auto container px-5 py-16">
                 <div className="flex justify-between items-center">
                     <div>
@@ -19,13 +19,13 @@ export default function Header() {
                         <NavLink
                             to='/'
                             className={({ isActive }) =>
-                                isActive ? 'text-orange-500 uppercase font-bold' : 'text-white uppercase font-bold'
+                                isActive ? 'text-orange-300 uppercase font-bold' : 'text-white uppercase font-bold'
                             }
                         >Inicio</NavLink>
                         <NavLink
                             to='/favoritos'
                             className={({ isActive }) =>
-                                isActive ? 'text-orange-500 uppercase font-bold' : 'text-white uppercase font-bold'
+                                isActive ? 'text-orange-300 uppercase font-bold' : 'text-white uppercase font-bold'
                             }
                         >favoritos</NavLink>
                     </nav>
