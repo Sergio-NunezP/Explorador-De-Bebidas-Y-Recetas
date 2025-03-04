@@ -1,11 +1,13 @@
-import { useEffect, useMemo } from "react";
+import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useAppStore } from "../stores/useAppStore";
 
 export default function Header() {
-
+    const [searchFilter, setSearchFilter] = useState({
+        ingredient: '',
+        category: ''
+    })
     const { pathname } = useLocation()
-
     const isHome = useMemo(() => pathname === '/', [pathname])
 
     const fetchCategories = useAppStore((state) => state.fetchCategories)
@@ -15,6 +17,12 @@ export default function Header() {
         fetchCategories()
     }, [])
 
+    const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
+        setSearchFilter({
+            ...searchFilter,
+            [e.target.name]: e.target.value
+        })
+    }
 
     return (
         <header className={isHome ? 'bg-[url(/bg.jpg)] bg-center  bg-cover' : 'bg-slate-800'}>
@@ -54,19 +62,23 @@ export default function Header() {
                                 id="ingredient"
                                 className="bg-white p-3 w-full rounded-lg focus:outline-none"
                                 placeholder="Nombre o Ingrediente: Ej. Vodka, Café"
+                                onChange={handleChange}
+                                value={searchFilter.ingredient}
                             />
                         </div>
 
                         <div className="space-y-4">
                             <label
-                                htmlFor="ingredient"
+                                htmlFor="category"
                                 className="block text-white uppercase font-extrabold text-lg"
                             >Categoria</label>
 
                             <select
-                                name="ingredient"
-                                id="ingredient"
+                                name="category"
+                                id="category"
                                 className="bg-white p-3 w-full rounded-lg focus:outline-none"
+                                onChange={handleChange}
+                                value={searchFilter.ingredient}
                             >
                                 <option value="">-- Seleccione --</option>
                                 {categories.drinks.map(category => (
