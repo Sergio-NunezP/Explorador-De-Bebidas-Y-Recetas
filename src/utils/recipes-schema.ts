@@ -12,3 +12,13 @@ export const SearchFilterSchema = z.object({
     ingredient: z.string(),
     category: z.string()
 })
+
+export const DrinkAPIResponde = z.object({
+    idDrink: z.string(),
+    strDrink: z.string(),
+    strDrinkThumb: z.string(),
+})
+
+export const DrinksAPIResponde = z.object({
+    drinks: z.array(DrinkAPIResponde)
+})
