@@ -6,6 +6,7 @@ export default function Modal() {
 
     const modal = useAppStore((state) => state.modal)
     const closeModal = useAppStore((state) => state.closeModal)
+    const selectedRecipe = useAppStore((state) => state.selectedRecipe)
 
     return (
         <>
@@ -36,14 +37,23 @@ export default function Modal() {
                             >
                                 <DialogPanel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl sm:p-6" >
                                     <DialogTitle as="h3" className="text-gray-900 text-4xl font-extrabold my-5 text-center">
-                                        Titulo Aquí
+                                        {selectedRecipe.strDrink}
                                     </DialogTitle>
+
+                                    <img
+                                        src={selectedRecipe.strDrinkThumb}
+                                        alt={`Imagen de ${selectedRecipe.strDrink}`}
+                                        className='mx-auto w-95'
+                                    />
+
                                     <DialogTitle as="h3" className="text-gray-900 text-2xl font-extrabold my-5">
                                         Ingredientes y Cantidades
                                     </DialogTitle>
                                     <DialogTitle as="h3" className="text-gray-900 text-2xl font-extrabold my-5">
                                         Instrucciones
                                     </DialogTitle>
+
+                                    <p className='text-lg'>{selectedRecipe.strInstructions}</p>
                                 </DialogPanel>
                             </TransitionChild>
                         </div>
