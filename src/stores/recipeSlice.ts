@@ -18,12 +18,16 @@ export const createRecipesSlice: StateCreator<RecipesSliceType> = (set) => ({
     drinks: {
         drinks: []
     },
+
+    // Categorias
     fetchCategories: async () => {
         const categories = await getCategories()
         set({
             categories
         })
     },
+
+    // Recetas
     searchRecipes: async (filters) => {
         const drinks = await getRecipes(filters)
         set({
