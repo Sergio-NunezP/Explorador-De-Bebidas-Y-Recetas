@@ -9,6 +9,7 @@ export default function Modal() {
     const closeModal = useAppStore((state) => state.closeModal)
     const selectedRecipe = useAppStore((state) => state.selectedRecipe)
     const handleClickFavorite = useAppStore((state) => state.handleClickFavorite)
+    const favoriteExist = useAppStore((state) => state.favoriteExist)
 
     const renderIngredients = () => {
         const ingredients: JSX.Element[] = []
@@ -89,7 +90,7 @@ export default function Modal() {
                                             type='button'
                                             className='w-full rounded bg-orange-600 p-3 font-bold uppercase text-white shadow hover:bg-orange-400 cursor-pointer'
                                             onClick={() => handleClickFavorite(selectedRecipe)}
-                                        >Agregar a Favoritos</button>
+                                        >{favoriteExist(selectedRecipe.idDrink) ? 'Eliminar Favorito' : 'Agregar a Favorito'}</button>
                                     </div>
                                 </DialogPanel>
                             </TransitionChild>
